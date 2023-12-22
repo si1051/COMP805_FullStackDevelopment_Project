@@ -22,6 +22,15 @@ Python and Django based Web application that allows Users to Register and Login.
 - JSON
 
 
+## References:
+- HTML,JavaScript,CSS,Bootsrap : "https://www.w3schools.com","https://www.tutorialspoint.com/index.html"
+- Django - EVERYCHEESE PROJECT
+- Travel Buddy template: "github.com"
+- API - "https://restcountries.com/#api-endpoints-using-this-project","https://www.postman.com"
+- AJAX- "https://www.w3schools.com"
+- Project IDEA:"https://chat.openai.com"
+
+
 ## Usage:
 
 ![App Login Image](./src/assets/static_cdn/img/Login.png)

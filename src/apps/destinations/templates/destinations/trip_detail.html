@@ -11,9 +11,8 @@
 {% url 'logout' as logout_url %}
 {% url 'travel:add_trip' as add_trip_url %}
 
-
 {% include 'partials/navbar.html' %}
-<div class="container">
+<div class="container" style="color: white;">
 
   <div class="row">
 
@@ -21,25 +20,29 @@
       <div class="this_destination">
         <h2>Destination: {{ destination.location }}</h2>
         <hr>
-        <h5>Planned By: {{ destination.planner.first_name }} {{ destination.planner.last_name }}</h5>
+        <h5>Planned By: {{ destination.first_name }}</h5>
         <h5>Plan: {{ destination.description }}</h5>
         <h5>From: {{ destination.start_date }}</h5>
         <h5>To: {{ destination.end_date }}</h5>
-        <h5>Rating: {{ destination.rating}}</h5>
+        <form id="ratingForm" method="post" action="{% url 'travel:update_rating' destination.id %}">
+          {% csrf_token %}
+         <h5> <label for="id_rating">Update Rating:</label>
+          <input type="number" name="rating" id="id_rating" min="0" max="5" step="1" value="{{ destination.rating }}"> </h5>
+          <input type="submit" value="Submit Rating">
+        </form>
       </div>
     </div>
 
     <div class="col-md-6">
       <div class="others_this_destination">
-        <h2>Accompaning Travelers:</h2>
+        <h2>Accompanying Travelers:</h2>
         <hr>
-        {% for user in destination.users_on_trip.all %}
-        <h5>{{ user.first_name }} {{ user.last_name }}</h5>
+        {% for user in other_users_trips  %}
+        <h5>{{ Sriram }}</h5>
         {% endfor %}
       </div>
     </div>
   </div>
-
-
 </div>
+
 {% endblock %}

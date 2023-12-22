@@ -65,37 +65,54 @@
 
     <ul>
         {% for place in places %}
-        <li class="{{ place_color }}" >{{ place }}</li>
+        <li class="{{ place_color }}" onclick="showPopup('{{ place }}')">{{ place }}</li>
         {% endfor %}
     </ul>
-    <script>
-        function loadCountriesData() {
-            const xhttp = new XMLHttpRequest();
-            xhttp.onload = function () {
-                const countriesData = JSON.parse(xhttp.responseText);
-                displayCountriesTable(countriesData);
-            }
-            xhttp.open("GET", "https://restcountries.com/v3.1/independent?status=true");
-            xhttp.send();
-        }
-    function displayCountriesTable(countriesData) {
-        let table = "<thead class='thead-dark'><tr><th>Country</th><th>Capital</th><th>Flag</th></tr></thead><tbody>";
-        for (let i = 0; i < countriesData.length; i++) {
-            const country = countriesData[i];
-            const flagImage = country.flags && country.flags.png;  // Assuming the flag image URL is available
 
-            table += `<tr>
-                        <td>${country.name.common}</td>
-                        <td>${country.capital}</td>
-                        <td><img src="${flagImage || 'https://via.placeholder.com/20'}" alt="Flag" style="width: 20px;"></td>
-                      </tr>`;
-                      console.log(`Country: ${country.name.common}, Capital: ${country.capital}`);
-        }
-        table += "</tbody>";
-        document.getElementById("countriesTable").innerHTML = table;
-    }
-</script>
+    <!-- Button to trigger Ajax request -->
+    <button type="button" class="btn btn-primary" onclick="loadCountriesData()">Get Country Data</button>
+
+    <!-- Bootstrap-styled table -->
+    <table id="countriesTable" class="table table-bordered table-striped"></table>
+
+    <!-- Include Bootstrap and jQuery scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy6pL8TTPq4J40mlduVf3az/L5m" crossorigin="anonymous"></script>
+    <script>
+      function loadCountriesData() {
+          const xhttp = new XMLHttpRequest();
+          xhttp.onload = function () {
+              const countriesData = JSON.parse(xhttp.responseText);
+              displayCountriesTable(countriesData);
+          }
+          xhttp.open("GET", "https://restcountries.com/v3.1/independent?status=true");
+          xhttp.send();
+      }
   
+      function displayCountriesTable(countriesData) {
+          let table = "<thead class='thead-dark'><tr><th>Country</th><th>Capital</th><th>Flag</th></tr></thead><tbody>";
+          for (let i = 0; i < countriesData.length; i++) {
+              const country = countriesData[i];
+              const flagImage = country.flags && country.flags.png;  // Assuming the flag image URL is available
+  
+              table += `<tr>
+                          <td>${country.name.common}</td>
+                          <td>${country.capital}</td>
+                          <td><img src="${flagImage || 'https://via.placeholder.com/20'}" alt="Flag" style="width: 20px;"></td>
+                        </tr>`;
+                        console.log(`Country: ${country.name.common}, Capital: ${country.capital}`);
+          }
+          table += "</tbody>";
+          document.getElementById("countriesTable").innerHTML = table;
+      }
+  
+      function showPopup(place) {
+          if (confirm(`Do you want to go to ${place}?`)) {
+              alert(`Great! Enjoy your trip to ${place}!`);
+          }
+      }
+  </script>
+
 </body>
 
 </html>

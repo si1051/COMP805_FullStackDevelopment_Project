@@ -33,7 +33,7 @@ class Countries(TemplateView):
             logging.error(f'Error making API request. Status code: {response.status_code}')
 
         return render(request, 'destinations/countries.html', context={'places': countries_list})
-    
+
 def ajax_endpoint(request):
     # Perform any data fetching or processing here
     # For example, you can make a request to the specified API endpoint
@@ -42,9 +42,8 @@ def ajax_endpoint(request):
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
     if response.status_code == 200:
-        data_ajax = response.json()
-        logging.info(data_ajax)
-        return JsonResponse({'result': data_ajax})
+        data = response.json()
+        logging.info(data)
+        return JsonResponse({'result': data})
     else:
         return JsonResponse({'error': 'Error making API request'}, status=500)
-

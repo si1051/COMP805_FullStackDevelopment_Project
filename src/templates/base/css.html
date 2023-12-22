@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Buddy</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.png' %}">
+
+    <style>
+        /* Custom styles for the page */
+        #aboutUsContainer {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        #travelBuddyHeading {
+            background: url('https://source.unsplash.com/1600x900/?airplane') center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Travel Buddy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="loadAboutUs()">About Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <h2>Welcome to Travel Buddy!</h2>
+
+        <!-- Description -->
+        <p>
+            Explore the world with Travel Buddy! Immerse yourself in breathtaking journeys, discover hidden gems, and
+            create unforgettable memories. Our curated trips offer a perfect blend of adventure, culture, and relaxation.
+            Join us on a thrilling exploration of diverse landscapes and vibrant cultures. Let Travel Buddy be your
+            guide to the extraordinary.
+        </p>
+
+        <!-- Home Images -->
+        <div class="card-deck mt-3" id="homeImages">
+            <!-- Home images will be dynamically inserted here -->
+        </div>
+
+        <!-- Sriram's Travel Buddy Heading with Background Image -->
+        <div id="travelBuddyHeading">
+            <h1 class="display-4">Sriram's Travel Buddy</h1>
+        </div>
+
+        <!-- About Us Content (to be loaded dynamically) -->
+        <div id="aboutUsContainer">
+            <div id="aboutUsContent">
+                <p>
+                    Welcome to Sriram's Travel Buddy! We are passionate about exploring the world and sharing
+                    incredible travel experiences with you. Our mission is to make your journeys unforgettable,
+                    filled with adventure, cultural richness, and relaxation. Join us on the path to discovering
+                    extraordinary places and creating lasting memories. Let Sriram's Travel Buddy be your companion
+                    in the world of exploration!
+                </p>
+                <p>Contact us at: travelbuddy@example.com</p>
+                <p>Founder: Sriram</p>
+            </div>
+            <div class="row mt-4">
+                <!-- Placeholder images, replace with actual travel images -->
+                <div class="col-md-4">
+                    <img src="https://source.unsplash.com/800x600/?travel" class="img-fluid" alt="Travel Image">
+                </div>
+                <div class="col-md-4">
+                    <img src="https://source.unsplash.com/800x600/?adventure" class="img-fluid"
+                        alt="Adventure Image">
+                </div>
+                <div class="col-md-4">
+                    <img src="https://source.unsplash.com/800x600/?explore" class="img-fluid" alt="Explore Image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js (for Bootstrap's JavaScript components) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE2411eqDHpdj2aPb+qY3f5I5t0ECB3"
+        crossorigin="anonymous"></script>
+
+    <script>
+        function loadAboutUs() {
+            var aboutUsContainer = document.getElementById('aboutUsContent');
+
+            // Simulating an Ajax request to load About Us content
+            var aboutUsContent = `
+                <p>
+                    Welcome to Sriram's Travel Buddy! We are passionate about exploring the world and sharing incredible travel experiences with you. 
+                    Our mission is to make your journeys unforgettable, filled with adventure, cultural richness, and relaxation. Join us on the 
+                    path to discovering extraordinary places and creating lasting memories. Let Sriram's Travel Buddy be your companion in the world of exploration!
+                </p>
+                <p>Contact us at: travelbuddy@example.com</p>
+                <p>Founder: Sriram</p>
+            `;
+
+            aboutUsContainer.innerHTML = aboutUsContent;
+
+            // Log the content to the console
+            console.log("About Us content loaded:", aboutUsContent);
+        }
+
+        // Home Images
+        var homeImagesContainer = document.getElementById('homeImages');
+        var homeImages = [
+            {
+                'image': 'https://source.unsplash.com/800x600/?nature',
+                'description': 'Experience the beauty of nature.'
+            },
+            {
+                'image': 'https://source.unsplash.com/800x600/?travel',
+                'description': 'Embark on exciting travel adventures.'
+            },
+            {
+                'image': 'https://source.unsplash.com/800x600/?explore',
+                'description': 'Explore new places and cultures.'
+            },
+        ];
+
+        homeImages.forEach(function (homeImage) {
+            var card = document.createElement('div');
+            card.className = 'card';
+            var img = document.createElement('img');
+            img.src = homeImage['image'];
+            img.className = 'card-img-top';
+            img.alt = 'Home Image';
+            var cardBody = document.createElement('div');
+            cardBody.className = 'card-body';
+            var text = document.createElement('p');
+            text.className = 'card-text';
+            text.innerText = homeImage['description'];
+
+            cardBody.appendChild(text);
+            card.appendChild(img);
+            card.appendChild(cardBody);
+
+            homeImagesContainer.appendChild(card);
+        });
+    </script>
+
+</body>
+
+</html>

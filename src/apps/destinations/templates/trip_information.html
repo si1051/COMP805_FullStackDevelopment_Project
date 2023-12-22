@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'travel_buddy/css/travel_styles.css' %}">
+    <title> {{ destination.location }}</title>
+  </head>
+  <body style="background-color: #f8f9fa; color: white;">
+    <div class="wrapper">
+      <div class="header">
+        <div class="navbar">
+          <a class="navbar-brand" href="/travels">
+            <img src="{% static 'travel_buddy/img/airplane_logo.png'%}" alt="airplane logo">
+          </a>
+          <div class="row">
+            <h3>{{ request.session.username }}</h3>
+            <a href="/travels"><button class="btn btn-primary" type="button" name="home_btn">Home</button></a>
+            <a href="/logout"><button class="btn btn-danger" type="button" name="logout_btn">Logout</button></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container mt-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="This_destination">
+                  <h2 style="color: white;">Destination: {{ destination.location }}</h2>
+                  <h5 style="color: white;">Planned By: {{ destination.planner.name }}</h5>
+                  <h5 style="color: white;">Description: {{ destination.description }}</h5>
+                  <h5 style="color: white;">Travel Date From: {{ destination.start_date }}</h5>
+                  <h5 style="color: white;">Travel Date To: {{ destination.end_date }}</h5>
+                  <h5 style="color: white;">Rating: {{ destination.rating }}</h5>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="others_this_destination">
+                  <h2 style="color: white;">Accompaning Travelers:</h2>
+                  {% for user in others %}
+                  <h5 style="color: white;">{{ user.name }}</h5>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
